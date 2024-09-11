@@ -14,7 +14,6 @@ The project consists of an Bash script that performs a data backup of a volume o
 
 <h2>Setup</h2>
 
-Setup backup script to run at desired time</br>
 
   1. Create /opt/backup directory:</br>
     $ sudo mkdir /opt/backup
