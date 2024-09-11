@@ -23,17 +23,17 @@ The project consists of an Bash script that performs a data backup of a volume o
     into /opt/backup/backup_family-server_data.sh:</br>
     $ sudo nano /opt/backup/backup_family-server_data.sh
 
-  - Grant the execute permissions to /opt/backup/backup_family-server_data.sh:</br>
+ - Grant the execute permissions to /opt/backup/backup_family-server_data.sh:</br>
     $ sudo chmod +x /opt/backup/backup_family-server_data.sh
 
-  - Setup Cron Jobs to run the backup scripts at selected times:</br>
+ - Setup Cron Jobs to run the backup scripts at selected times:</br>
     $ sudo crontab -e
 
-  - Add the following lines to crontab:</br>
-    <span>#</span> Run backup_family-server_data.sh every day at 3:00am.</br>
-    0 3 * * * /opt/backup/backup_family-server_data.sh > /dev/null 2>&1</br>
-    </br>
-    </br>
+ - Add the following lines to crontab:</br>
+   <span>#</span> Run backup_family-server_data.sh every day at 3:00am.</br>
+   0 3 * * * /opt/backup/backup_family-server_data.sh > /dev/null 2>&1</br>
+</br>
+</br>
 <!--
  ```diff
 - text in red
