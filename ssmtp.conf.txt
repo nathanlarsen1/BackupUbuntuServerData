@@ -1,27 +1,25 @@
-#
-# Config file for sSMTP sendmail
-#
-# The person who gets all mail for userids < 1000
-# Make this empty to disable rewriting.
-root=email@domain.com
+# The user that gets all the mails (UID < 1000, usually the admin)
+root=username@gmail.com
 
-# The place where the mail goes. The actual machine name is required no
-# MX records are consulted. Commonly mailhosts are named mail.domain.com
-mailhub=smtp.domain.com:port
+# The mail server (where the mail is sent to), both port 465 or 587 should be acceptable
+# See also https://support.google.com/mail/answer/78799
+mailhub=smtp.gmail.com:465
 
-# Where will the mail seem to come from?
-rewriteDomain=domain.com
+# The address where the mail appears to come from for user authentication.
+rewriteDomain=gmail.com
 
-# The full hostname
-hostname=smtp.domain.com:port
+# The full hostname.  Must be correctly formed, fully qualified domain name or GMail will reject connection.
+hostname=yourlocalhost.yourlocaldomain.tld
 
-UseTLS=YESy
-UseSTARTTLS=YES
-AuthUser=email@domain.com
+# Use implicit TLS (port 465). When using port 587, change UseSTARTTLS=Yes
+TLS_CA_FILE=/etc/ssl/certs/ca-certificates.crt
+UseTLS=Yes
+UseSTARTTLS=No
+
+# Username/Password
+AuthUser=username
 AuthPass=password
+AuthMethod=LOGIN
 
-# Are users allowed to set their own From: address?
-# YES - Allow the user to specify their own From: address
-# NO - Use the system generated From: address
-FromLineOverride=YES
-
+# Email 'From header's can override the default domain?
+FromLineOverride=yes
