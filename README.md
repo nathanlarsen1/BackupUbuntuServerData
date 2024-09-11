@@ -23,23 +23,37 @@ DEST_BASE_DIR: This is the destination directory for the backup.<br/>
 
 <h2>Setup</h2>
 
+<b>Create backup script</b></br>
 
   1. Create /opt/backup directory:</br>
-    $ sudo mkdir /opt/backup
+     $ sudo mkdir /opt/backup
 
   2. Create /opt/backup/backup_server_data.sh and copy contents of backup_server_data.sh.txt</br>
     into /opt/backup/backup_server_data.sh:</br>
-    $ sudo nano /opt/backup/backup_server_data.sh
+     $ sudo nano /opt/backup/backup_server_data.sh
 
   3. Grant the execute permissions to /opt/backup/backup_server_data.sh:</br>
-    $ sudo chmod +x /opt/backup/backup_server_data.sh
+     $ sudo chmod +x /opt/backup/backup_server_data.sh</br>
 
-  4. Setup Cron Jobs to run the backup scripts at selected times:</br>
-    $ sudo crontab -e
+<b>Setup Cron to run script at proper time</b></br>     
 
-  5. Add the following lines to crontab:</br>
+  1. Setup Cron Jobs to run the backup scripts at selected times:</br>
+     $ sudo crontab -e
+
+  2. Add the following lines to crontab:</br>
    <span>#</span> Run backup_server_data.sh every day at 3:00am.</br>
    0 3 * * * /opt/backup/backup_server_data.sh > /dev/null 2>&1</br>
+
+  <b>Install and setup sSMTP</b></br>
+
+  1. Install sSMTP via apt:</br>
+     $ sudo apt install ssmtp
+
+  3. Make a backup of /etc/ssmtp/ssmtp.conf before making changes:</br>
+     $ sudo cp /etc/ssmtp/ssmtp.conf /etc/ssmtp/ssmtp.conf_old
+
+  4. Edit /etc/ssmtp/ssmtp.conf and copy contents of ssmtp.conf.txt into it:</br>
+     $ sudo nano /etc/ssmtp/ssmtp.conf
 </br>
 </br>
 <!--
