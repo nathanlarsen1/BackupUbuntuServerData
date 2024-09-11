@@ -14,6 +14,7 @@ DEST_BASE_DIR: This is the destination directory for the backup.<br/>
 
 - <b>Bash</b>
 - <b>Rsync</b>
+- <b>Cron</b>
 - <b>SSMTP</b>
 
 <h2>Environments Used </h2>
