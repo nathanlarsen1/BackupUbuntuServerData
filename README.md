@@ -2,7 +2,7 @@
 
 
 <h2>Description</h2>
-The project consists of an Bash script that performs a data backup of a specific data directories on a Ubuntu Linux Server to a backup drive using Rsync.<br/><br/>
+The project consists of an Bash script that performs a data backup of specific data directories on a Ubuntu Linux Server to a backup drive using Rsync.<br/><br/>
 
 <h2>Language</h2>
 
