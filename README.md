@@ -16,20 +16,20 @@ The project consists of an Bash script that performs a data backup of a volume o
 
 - Setup backup script to run at desired time</br>
 
-  - Create /opt/backup directory:</br>
+  1. Create /opt/backup directory:</br>
     $ sudo mkdir /opt/backup
 
-  - Create /opt/backup/backup_server_data.sh and copy contents of backup_server_data.sh.txt</br>
+  2. Create /opt/backup/backup_server_data.sh and copy contents of backup_server_data.sh.txt</br>
     into /opt/backup/backup_server_data.sh:</br>
     $ sudo nano /opt/backup/backup_server_data.sh
 
-  - Grant the execute permissions to /opt/backup/backup_server_data.sh:</br>
+  3. Grant the execute permissions to /opt/backup/backup_server_data.sh:</br>
     $ sudo chmod +x /opt/backup/backup_server_data.sh
 
-  - Setup Cron Jobs to run the backup scripts at selected times:</br>
+  4. Setup Cron Jobs to run the backup scripts at selected times:</br>
     $ sudo crontab -e
 
-  - Add the following lines to crontab:</br>
+  5. Add the following lines to crontab:</br>
    <span>#</span> Run backup_server_data.sh every day at 3:00am.</br>
    0 3 * * * /opt/backup/backup_server_data.sh > /dev/null 2>&1</br>
 </br>
