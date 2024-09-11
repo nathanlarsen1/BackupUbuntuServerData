@@ -2,13 +2,26 @@
 
 
 <h2>Description</h2>
-The project consists of an Bash script that performs a data backup of a specific data directories on a Ubuntu Linux Server to a backup drive.
-There are several variables that must be changed in the script to suit your needs. The variables that need to be changed are the following:<br/><br/>
+The project consists of an Bash script that performs a data backup of a specific data directories on a Ubuntu Linux Server to a backup drive.<br/><br/>
+
+There are several variables that must be changed in the script to suit your needs. The variables that need to be changed are the following:<br/>
 
 EMAIL_ADDRESS: This is the email address used for backup notifications.<br/>
 SRC_DIR: This is the root directory for the subdirectories that will be backed up.<br/>
 BACKUP_FOLDER_NAMES: This is an array of directories that will be backed up.<br/>
 DEST_BASE_DIR: This is the destination directory for the backup.<br/>
+
+The settings that need to be changed in the ssmtp.conf file are the following:<br/>
+
+root:<br/>
+mailhub:<br/>
+rewriteDomain:<br/>
+hostname:<br/>
+UseTLS:<br/>
+UseSTARTTLS:<br/>
+AuthUser:<br/>
+AuthPass:<br/>
+FromLineOverride:<br/>
 
 <h2>Language</h2>
 
