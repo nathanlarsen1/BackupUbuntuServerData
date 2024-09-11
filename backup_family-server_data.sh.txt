@@ -6,7 +6,7 @@
 # Revision: 12012021.0800
 
 # Email account to use for email transaction
-EMAIL_ADDRESS=2bunreal@gmail.com
+EMAIL_ADDRESS=<email@address.com>
 
 # Get file path of script including filename
 SCRIPTPATH=$(readlink -f "$0")
@@ -22,10 +22,10 @@ SRC_DIR=/mnt/data
 
 # Folders within source directory to backup
 # Surround folder names with double quotes and spaces.
-BACKUP_FOLDER_NAMES=( "jessie" "nathan/Documents" "nathan/iTunes Media" "nathan/Pictures" "nathan/Training" "shared/Software" "shared/Video" )
+BACKUP_FOLDER_NAMES=( "folder1" "username/folder1" "username/folder2" "username/folder3" "username/folder4" "username/folder5" "username/folder6" )
 
 # Backup destination base directory
-DEST_BASE_DIR="/mnt/ext_backup/family-server_data_backup"
+DEST_BASE_DIR="/mnt/ext_backup/server_data_backup"
 
 # Delete old backup log
 LOG_FILE_EXISTS=$(ls "${SCRIPTDIR}/${SERVER_NAME}-backup-data-"*.log 2> /dev/null | wc -l)
