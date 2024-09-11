@@ -2,37 +2,39 @@
 
 
 <h2>Description</h2>
-The project consists of an Bash script that performs a data backup of a specific data directories on a Ubuntu Linux Server to a backup drive.<br/><br/>
-
-There are several variables that must be changed in the script to suit your needs. The variables that need to be changed are the following:<br/>
-
-EMAIL_ADDRESS: This is the email address used for backup notifications.<br/>
-SRC_DIR: This is the root directory for the subdirectories that will be backed up.<br/>
-BACKUP_FOLDER_NAMES: This is an array of directories that will be backed up.<br/>
-DEST_BASE_DIR: This is the destination directory for the backup.<br/>
-
-The settings that need to be changed in the ssmtp.conf file are the following:<br/>
-
-root:<br/>
-mailhub:<br/>
-rewriteDomain:<br/>
-hostname:<br/>
-UseTLS:<br/>
-UseSTARTTLS:<br/>
-AuthUser:<br/>
-AuthPass:<br/>
-FromLineOverride:<br/>
+The project consists of an Bash script that performs a data backup of a specific data directories on a Ubuntu Linux Server to a backup drive using Rsync.<br/><br/>
 
 <h2>Language</h2>
 
 - <b>Bash</b>
 - <b>Rsync</b>
 - <b>Cron</b>
-- <b>SSMTP</b>
+- <b>SSMTP</b><br/><br/>
 
 <h2>Environments Used </h2>
 
-- <b>Ubuntu 22.04.4 LTS</b>
+- <b>Ubuntu 22.04.4 LTS</b><br/><br/>
+
+<h2>Variables and Settings</h2>
+
+There are several variables that must be changed in the script to suit your needs. The variables that need to be changed are the following:<br/>
+
+- <b>EMAIL_ADDRESS:</b> This is the email address used for backup notifications.<br/>
+- <b>SRC_DIR:</b> This is the root directory for the subdirectories that will be backed up.<br/>
+- <b>BACKUP_FOLDER_NAMES:</b> This is an array of directories that will be backed up.<br/>
+- <b>DEST_BASE_DIR:</b> This is the destination directory for the backup.<br/>
+
+The settings that need to be changed in the ssmtp.conf file are the following:<br/>
+
+- <b>root:</b> This is the email address that gets all mail for userids < 1000. Leave this empty to disable rewriting.<br/>
+- <b>mailhub:</b> Fully qualified domain name of mail server including port number.<br/>
+- <b>rewriteDomain:</b> Domain where email is coming form. Set this to the domain of your mail server.<br/>
+- <b>hostname:</b> Fully qualified domain name of mail server including port number.<br/>
+- <b>UseTLS:</b> If your mail server has TLS support then set this to YES. If not, set it to NO.<br/>
+- <b>UseSTARTTLS:</b> If your mail server has STARTTLS support then set this to YES. If not, set it to NO.<br/>
+- <b>AuthUser:</b> Email account username.<br/>
+- <b>AuthPass:</b> Email account password.<br/>
+- <b>FromLineOverride:</b> Set this to YES is email users are able to send from their own address. If not, set it to NO.<br/><br/>
 
 <h2>Setup</h2>
 
