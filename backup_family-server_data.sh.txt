@@ -1,0 +1,86 @@
+#!/bin/bash
+
+# This script creates incremental backups using rsync and then sends an email with the contents of the backup log file. 
+# Written by Nathan Larsen
+
+# Revision: 12012021.0800
+
+# Email account to use for email transaction
+EMAIL_ADDRESS=2bunreal@gmail.com
+
+# Get file path of script including filename
+SCRIPTPATH=$(readlink -f "$0")
+
+# Remove filename from file path of script
+SCRIPTDIR=$(dirname "${SCRIPTPATH}")
+
+# Source server name
+SERVER_NAME=$(hostname)
+
+# Source directory
+SRC_DIR=/mnt/data
+
+# Folders within source directory to backup
+# Surround folder names with double quotes and spaces.
+BACKUP_FOLDER_NAMES=( "jessie" "nathan/Documents" "nathan/iTunes Media" "nathan/Pictures" "nathan/Training" "shared/Software" "shared/Video" )
+
+# Backup destination base directory
+DEST_BASE_DIR="/mnt/ext_backup/family-server_data_backup"
+
+# Delete old backup log
+LOG_FILE_EXISTS=$(ls "${SCRIPTDIR}/${SERVER_NAME}-backup-data-"*.log 2> /dev/null | wc -l)
+if [ "$LOG_FILE_EXISTS" != "0" ]
+then
+sudo rm "${SCRIPTDIR}/${SERVER_NAME}-backup-data-"*.log
+fi
+
+# Today's date
+TODAY=$(date +%m%d%Y)
+
+# Backup log path and name
+BACKUP_LOG="${SCRIPTDIR}/${SERVER_NAME}-backup-data-${TODAY}.log"
+
+# Create blank log file
+sudo touch "${BACKUP_LOG}"
+
+# Yesterday's date
+YESTERDAY=$(date +%m%d%Y -d "1 day ago")
+
+# rsync options
+# Surround options with double quotes and spaces.
+if [ -d "$DEST_BASE_DIR/$YESTERDAY" ]
+then
+OPT=( "-av" "--delete" "--link-dest=$DEST_BASE_DIR/$YESTERDAY" )
+else
+OPT=( "-av" )
+fi
+
+# Destination directory
+DEST_DIR="${DEST_BASE_DIR}/${TODAY}"
+
+# Set IFS variable so loops will handle spaces in filenames
+IFS='"'
+
+# Backup data folders
+for FOLDER_NAME in "${BACKUP_FOLDER_NAMES[@]}"
+do
+       sudo /usr/bin/rsync "${OPT[@]}" "${SRC_DIR}/${FOLDER_NAME}" "${DEST_DIR}" >> "${BACKUP_LOG}"
+done
+
+# Set IFS variable to default
+unset IFS
+
+# Delete backups that are over six months old
+find "${DEST_BASE_DIR}" -maxdepth 1 -type d -mtime +180 -exec sudo rm -r {} \;
+
+# Read contents of backup log
+BACKUP_LOG_CONTENTS=$(cat "${BACKUP_LOG}")
+
+# Send backup log in email
+(
+echo "To: ${EMAIL_ADDRESS}"; \
+echo "From: ${EMAIL_ADDRESS}"; \
+echo "Subject: Data Backup of ${SERVER_NAME} Completed Successfully"; \
+echo ""; \
+echo "${BACKUP_LOG_CONTENTS}"; \
+) | /usr/sbin/ssmtp ${EMAIL_ADDRESS}
